@@ -21,9 +21,11 @@ public class MainHotelReservation{
         System.out.println("***Online Reservation***");
         OnlineReservation.StartOnlineReservation();
 
+		System.out.println();
         System.out.println("***Check In***");
         Staff.StartCheckin();
 
+		System.out.println();
         System.out.println("***Check out***");
         Staff.StartCheckout();
 		
