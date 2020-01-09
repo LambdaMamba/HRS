@@ -37,7 +37,7 @@ public class RoomDatabaseServer{
     private static Queue<Integer> WaitingList = new LinkedList<>();
 
     private static int WifiUsage;
-    private static int Date = 123;
+    private static String Date;
 
     private static OnlineReservationDetails details = new OnlineReservationDetails();
 
@@ -189,7 +189,7 @@ public class RoomDatabaseServer{
     }
 
 
-    public static void RegisterReservation(boolean Wifi, int Date){
+    public static void RegisterReservation(boolean Wifi, String Date){
       
         details.register(ReservationNumber, tempID, Date, Wifi);
         UpdateAvailableRoomList();

@@ -17,17 +17,40 @@ public class MainHotelReservation{
 		} else if (test == 3){
 			RoomDatabaseServer.TwoUserWantOneAvailableRoom();
         }
-        
+		
+		System.out.println();
         System.out.println("***Online Reservation***");
         OnlineReservation.StartOnlineReservation();
 
-		System.out.println();
-        System.out.println("***Check In***");
-        Staff.StartCheckin();
 
-		System.out.println();
-        System.out.println("***Check out***");
-        Staff.StartCheckout();
+		try{
+			for(int i=0; i<5; i++){
+				Thread.sleep(500);
+				System.out.println(".");
+
+			}
+			
+
+			System.out.println("***Check In***");
+			Staff.StartCheckin();
+		}catch(InterruptedException e){
+			Thread.currentThread().interrupt();
+		}
+		
+
+		try{
+			for(int i=0; i<5; i++){
+				Thread.sleep(500);
+				System.out.println(".");
+
+			}
+			System.out.println("***Check out***");
+			Staff.StartCheckout();
+		}catch(InterruptedException e){
+			Thread.currentThread().interrupt();
+		}
+
+		
 		
 	}
 

@@ -1,7 +1,7 @@
 public class OnlineReservationDetails{
     static int ReservationNumberDetails;
     static int IDDetails;
-    static int DateDetails;
+    static String DateDetails;
     static boolean WifiDetails; 
 
     public OnlineReservationDetails(){
@@ -9,7 +9,7 @@ public class OnlineReservationDetails{
 
     }
 
-    public static void register(int ReservationNumber, int ID, int Date, boolean Wifi){
+    public static void register(int ReservationNumber, int ID, String Date, boolean Wifi){
         ReservationNumberDetails = ReservationNumber;
         IDDetails = ID;
         DateDetails = Date;
