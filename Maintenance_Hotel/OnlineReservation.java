@@ -1,0 +1,214 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import java.util.*;
+import java.lang.*;
+import java.nio.channels.AcceptPendingException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.io.*;
+
+public class OnlineReservation extends Hotel{
+	private static int ReservationNumber;
+	private static int userID;
+    private static String Date;
+	private static int NumberOfAvailableRooms;
+	private static String details;
+	private static int cancel;
+
+
+
+	public static void CancelReservation(){
+		ServerProcessor.RemoveReservation();
+		System.out.println("Your reservation has been cancelled.");
+	}
+
+
+	public static void CancelTime(){
+		try{
+			System.out.println("Would you like to continue? (1 to go to hotel) or (0 to cancel reservation)");
+			Scanner scan = new Scanner(System.in);
+			cancel = scan.nextInt();
+
+			if(cancel==0){
+				System.out.println("Your reservation has been cancelled.");
+				ServerProcessor.RemoveReservation();
+				
+			} 
+
+			while((cancel!=0)&&(cancel!=1)){
+				System.out.println("Invalid answer.");
+				cancel = scan.nextInt();
+			}
+		}catch(InputMismatchException e){
+			System.out.println("Invalid answer.");
+			CancelTime();
+		}
+		 
+	}
+
+
+	public static void StartOnlineReservation(){
+		inputID();
+		inputDate();
+		CheckAvailableRoom(userID);	
+		
+	}
+
+	public static void inputID(){
+
+		System.out.println("Welcome to "+HotelName+" "+location+"'s Online Reservation System");
+
+		try{
+			Scanner scan1 = new Scanner(System.in);
+			System.out.println("Please input your user ID in five digits:");
+			int ID = scan1.nextInt();
+			int length = String.valueOf(ID).length();
+			if(length != 5){
+				inputID();
+
+			}else if(length == 5){
+				userID = ID;
+			}
+		}catch(InputMismatchException e){
+			System.out.println("Please input 5 digit integer!");
+			inputID();
+		}
+	}
+	public static void inputDate(){
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Calendar c = Calendar.getInstance();
+		String today = sdf.format(c.getTime());
+		System.out.println("Today is "+today);
+
+		c.add(c.DATE, 7);
+		Date = sdf.format(c.getTime());
+		System.out.println("Rooms available on "+Date +"(1 week later) will be searched.");
+		
+		
+		
+	}
+	
+	public static void CheckAvailableRoom(int userID) {
+		int i;
+		for(i=0; i<5; i++){
+			try{
+				Thread.sleep(500);
+				System.out.println("...");
+			}catch(InterruptedException e){
+				Thread.currentThread().interrupt();
+			}
+		}
+        NumberOfAvailableRooms = ServerProcessor.SearchAvailableRoom(userID);
+        ShowNumberOfAvailableRooms();
+		ServerProcessor.CheckHowManyWantToReserveRoom();
+		
+    }
+    
+    public static void ShowNumberOfAvailableRooms(){
+        System.out.println("Number of available rooms is " + NumberOfAvailableRooms);
+    }
+
+	public static void ShowReservationNumber() {
+		System.out.println("Your reservation number is "+ ReservationNumber);
+	}
+	public static void ShowWaitingListWarning() {
+		System.out.println("The reservation is currently not available, Please wait. You have been put on the waiting list");
+	}
+	public static void UserConfirmation() {
+		System.out.println("Please confirm your reservation by typing in (1 for Yes) or (0 for No).");
+		Scanner scan2 = new Scanner(System.in);
+        char reply = scan2.next().charAt(0);
+    
+		if (reply=='1') {
+			WifiConfirmation();
+		}else if (reply == '0') {
+			ShowPleaseRebook();
+		}else{
+			UserConfirmation();
+		}
+		
+		
+	}
+	public static void WifiConfirmation(){
+			System.out.println("Would you like to have Wifi services in your room? (1 for Yes) or (0 for No).");
+			Scanner scan3 = new Scanner(System.in);
+			boolean wifi;
+			char WifiNum = scan3.next().charAt(0);
+
+			if (WifiNum == '1'){
+				wifi = true;
+				ServerProcessor.RegisterReservation(wifi, Date);
+				ShowDetails();
+			} else if (WifiNum == '0') {
+				wifi = false;
+				ServerProcessor.RegisterReservation(wifi, Date);
+				ShowDetails();
+			} else{
+				WifiConfirmation();
+			}
+			
+
+			
+	}
+
+	public static void UserHereIsSelected() {
+		System.out.println("Please wait, we are generating reservation number.");
+		int i;
+		for(i=0; i<5; i++){
+			try{
+				Thread.sleep(500);
+				System.out.println("...");
+			}catch(InterruptedException e){
+				Thread.currentThread().interrupt();
+			}
+		}
+
+        ReservationNumber = ServerProcessor.GenerateReservationNumber();
+		ShowReservationNumber();
+		UserConfirmation();
+	}
+	public static void UserHereIsNotSelected() {
+		ShowWaitingListWarning();
+	}
+	public static void ShowPleaseRebook() {
+		System.out.println("Please Rebook.");
+		System.exit(0);
+	}
+
+
+	public static void ShowDetails(){
+		System.out.println();
+		details = ServerProcessor.FetchOnlineReservationDetails();
+		System.out.println("Your reservation is registered as "+details);
+		System.out.println("We will be looking forward to your stay 1 week later!");
+
+		
+		
+		try{
+			for(int i=0; i<5; i++){
+				Thread.sleep(500);
+				System.out.println(".");
+
+			}
+
+			CancelTime();
+
+			for(int i=0; i<5; i++){
+				Thread.sleep(500);
+				System.out.println(".");
+
+			}
+
+
+		}catch(InterruptedException e){
+			Thread.currentThread().interrupt();
+		}
+		
+	}
+	
+}
+
