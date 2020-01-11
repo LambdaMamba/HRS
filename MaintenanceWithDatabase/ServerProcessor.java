@@ -12,8 +12,6 @@ public class ServerProcessor extends Hotel{
 
     private static int SelectedID;
 
-    private static String ChainName;
-
     private static int RoomForReservation;
 
     private static int tempID;
@@ -22,16 +20,10 @@ public class ServerProcessor extends Hotel{
 
     private static boolean userIsChosen;
 
-
-    private static int WifiUsage;
-    private static String Date;
-
     private static OnlineReservationDetails details = new OnlineReservationDetails();
 
 
     private static List<Room> RoomInstances = new ArrayList<Room>();
-
-
     public static void RemoveReservation(){
         Database.UpdateAvailableRoomListRemoveReservation();
         

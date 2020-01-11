@@ -124,6 +124,7 @@ public class Database extends Hotel{
             }
 
         }
+        System.out.println("[Database "+location+"] Available room list" +Arrays.toString(AvailableRoomList));
     }
 
     public static void InstantiateTwoUserWantOneAvailableRoom(){
@@ -144,6 +145,7 @@ public class Database extends Hotel{
                 AvailableRoomList[i] = OpenRoom;
             }
         }
+        System.out.println("[Database "+location+"] Available room list" +Arrays.toString(AvailableRoomList));
     }
 
     public static void InstantiateRoomFull(){
@@ -153,5 +155,6 @@ public class Database extends Hotel{
         for(int i=0; i<AvailableRoomList.length; i++){
             AvailableRoomList[i] = -1;
         }
+        System.out.println("[Database "+location+"] Available room list" +Arrays.toString(AvailableRoomList));
     }
 }
