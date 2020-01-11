@@ -14,15 +14,13 @@ public class OnlineReservation extends Hotel{
 
 
 	public static void StartOnlineReservation(){
+		System.out.println("Welcome to "+HotelName+" "+location+"'s Online Reservation System");
 		inputID();
 		inputDate();
 		CheckAvailableRoom(userID);	
-		
 	}
 
 	public static void inputID(){
-
-		System.out.println("Welcome to "+HotelName+" "+location+"'s Online Reservation System");
 
 		try{
 			Scanner scan1 = new Scanner(System.in);
@@ -36,10 +34,10 @@ public class OnlineReservation extends Hotel{
 				userID = ID;
 			}
 		}catch(InputMismatchException e){
-			System.out.println("Please input 5 digit integer!");
 			inputID();
 		}
 	}
+	
 	public static void inputDate(){
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
