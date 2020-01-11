@@ -98,7 +98,6 @@ public class Database extends Hotel{
 
     
 
-
     public static void InstantiateRoomAvailable(){
         int dice; 
         int i;
@@ -116,6 +115,7 @@ public class Database extends Hotel{
             }
 
         }
+        System.out.println("[Database "+location+"] Available room list" +Arrays.toString(AvailableRoomList));
     }
 
     public static void InstantiateTwoUserWantOneAvailableRoom(){
@@ -136,14 +136,15 @@ public class Database extends Hotel{
                 AvailableRoomList[i] = OpenRoom;
             }
         }
+        System.out.println("[Database "+location+"] Available room list" +Arrays.toString(AvailableRoomList));
     }
 
     public static void InstantiateRoomFull(){
-
         WaitingList.add(99999);
         WaitingList.add(88888);
         for(int i=0; i<AvailableRoomList.length; i++){
             AvailableRoomList[i] = -1;
         }
+        System.out.println("[Database "+location+"] Available room list" +Arrays.toString(AvailableRoomList));
     }
 }

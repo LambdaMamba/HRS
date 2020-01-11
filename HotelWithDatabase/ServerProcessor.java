@@ -6,30 +6,16 @@ import java.util.*;
 
 public class ServerProcessor extends Hotel{
     private static int NumberOfAvailableRooms = 0;
-
-
     private static int NumberOfOnlineReservationInstances = 1;
-    private static int[] IDlistOfUsersWhoAreOnOnlineReservation = new int[NumberOfOnlineReservationInstances];
-
     private static int SelectedID;
-
-    private static String ChainName;
-
     private static int RoomForReservation;
-
     private static int tempID;
 
     private static int ReservationNumber;
 
     private static boolean userIsChosen;
 
-
-    private static int WifiUsage;
-    private static String Date;
-
     private static OnlineReservationDetails details = new OnlineReservationDetails();
-
-
     private static List<Room> RoomInstances = new ArrayList<Room>();
 
 
