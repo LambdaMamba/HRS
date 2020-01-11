@@ -42,17 +42,26 @@ public class ServerProcessor extends Hotel{
     public static void RoomAvailable(){
         NumberOfOnlineReservationInstances = 1;
         Database.InstantiateRoomAvailable();
+        for (int k=1; k<=NumberOfRooms; k++){
+            Database.AddToRoomFee(k);
+        }
         
     }
 
     public static void TwoUserWantOneAvailableRoom(){
         NumberOfOnlineReservationInstances = 2;
         Database.InstantiateTwoUserWantOneAvailableRoom();
+        for (int k=1; k<=NumberOfRooms; k++){
+            Database.AddToRoomFee(k);
+        }
     }
 
     public static void RoomFull(){
         NumberOfOnlineReservationInstances = 1;
         Database.InstantiateRoomFull();
+        for (int k=1; k<=NumberOfRooms; k++){
+            Database.AddToRoomFee(k);
+        }
     }
 
     
@@ -60,7 +69,6 @@ public class ServerProcessor extends Hotel{
         int k;
         //The rooms are instantiated, and fee of each room is assigned when this function is called
         for (k=1; k<=NumberOfRooms; k++){
-            Database.AddToRoomFee(k);
             RoomInstances.add(new Room(k, false, 0));
         }
 
