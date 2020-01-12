@@ -53,7 +53,7 @@ public class OnlineReservation extends Hotel{
 	public static void StartOnlineReservation(){
 		System.out.println("Welcome to "+HotelName+" "+location+"'s Online Reservation System");
 		inputID();
-		inputDate();
+		GetDate();
 		CheckAvailableRoom(userID);	
 	}
 
@@ -74,8 +74,8 @@ public class OnlineReservation extends Hotel{
 			inputID();
 		}
 	}
-	
-	public static void inputDate(){
+
+	public static void GetDate(){
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Calendar c = Calendar.getInstance();

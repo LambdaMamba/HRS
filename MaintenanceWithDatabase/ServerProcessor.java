@@ -140,7 +140,6 @@ public class ServerProcessor extends Hotel{
       
         details.register(ReservationNumber, tempID, Date, Wifi);
         RoomForReservation = Database.UpdateAvailableRoomList(ReservationNumber);
-        FetchOnlineReservationDetails();
 
     }
 
