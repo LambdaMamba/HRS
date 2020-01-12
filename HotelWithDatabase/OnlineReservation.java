@@ -16,7 +16,7 @@ public class OnlineReservation extends Hotel{
 	public static void StartOnlineReservation(){
 		System.out.println("Welcome to "+HotelName+" "+location+"'s Online Reservation System");
 		inputID();
-		inputDate();
+		GetDate();
 		CheckAvailableRoom(userID);	
 	}
 
@@ -37,8 +37,8 @@ public class OnlineReservation extends Hotel{
 			inputID();
 		}
 	}
-	
-	public static void inputDate(){
+
+	public static void GetDate(){
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Calendar c = Calendar.getInstance();
@@ -48,8 +48,6 @@ public class OnlineReservation extends Hotel{
 		c.add(c.DATE, 7);
 		Date = sdf.format(c.getTime());
 		System.out.println("Rooms available on "+Date +"(1 week later) will be searched.");
-		
-		
 		
 	}
 	
@@ -119,8 +117,7 @@ public class OnlineReservation extends Hotel{
 				}
 			}catch(InputMismatchException e){
 				WifiConfirmation();
-			}
-			
+			}		
 	}
 
 	public static void UserHereIsSelected() {

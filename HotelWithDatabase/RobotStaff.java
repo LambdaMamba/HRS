@@ -22,7 +22,7 @@ public class RobotStaff extends Hotel{
         ReceivePayment();
 
 
-        ConductCheckin();
+        ConductCheckout();
         TerminateCheckOut();
 
     }
@@ -130,14 +130,15 @@ public class RobotStaff extends Hotel{
     
 
 	public static void TerminateCheckOut() {
+        ServerProcessor.UserHasLeft(RoomNumber);
         if (angryRobotStaff == true){
             System.out.println("Do not forget to pay us back.");
         }
-        ServerProcessor.UserHasLeft(RoomNumber);
 
         if(angryRobotStaff == false){
             System.out.println("Thank you for staying at "+HotelName+" "+location+"! We hope to see you again!");
         }
+        
     }
     
 
